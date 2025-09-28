@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Load Images</title>
+
+  <style>
+    *,
+    *::after,
+    *::before {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: min(100%, 1200px);
+      margin-inline: auto;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-auto-rows: 400px;
+    }
+
+    .img-wrapper {
+      position: relative;
+    }
+
+    .img-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        background: rgba(255, 255, 255, 0);
+      }
+
+      50% {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      100% {
+        background: rgba(255, 255, 255, 0);
+      }
+    }
+
+
+    .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    .img-wrapper.loaded img {
+      opacity: 1;
+    }
+
+    @media screen and (min-width: 768px) {
+      .content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="content">
+      <div class="img-wrapper" style="background: url(small_images/1_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/1.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/2_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/2.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/3_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/3.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/4_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/4.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/5_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/5.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/6_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/6.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/7_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/7.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/8_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/8.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/9_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/9.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/10_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/10.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/11_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/11.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/12_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/12.jpg" alt="Image" />
+      </div>
+
+      <div class="img-wrapper" style="background: url(small_images/13_small.jpg) no-repeat center center/cover;">
+        <img loading="lazy" src="images/13.jpg" alt="Image" />
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const imgWrapper = document.querySelectorAll('.img-wrapper');
+    imgWrapper.forEach(imgEl => {
+      const img = imgEl.querySelector('img');
+
+      function loaded() {
+        imgEl.classList.add('loaded')
+      }
+
+      if (img.complete) {
+        loaded()
+      } else {
+        img.addEventListener('load', loaded)
+      }
+
+    });
+  </script>
+</body>
+
+</html>
